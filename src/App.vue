@@ -1,30 +1,29 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+<div style="height: 100%">
+	<div class="">
+		<div class="row no-gutters">
+			<leftSide />
+			<div class="col-md-9" v-if="friendStore.isUserSelected">
+					<chatBox />
+				</div>
+				<div v-else class="col-md-9" style="background: #fafafa;">
+					<div class="container">
+						<div class="col-md-12">
+							Hello
+						</div>
+					</div>					
+				</div>
+		</div>
+
+	</div>
+  </div>
 </template>
-
+<script setup>
+  import leftSide from '@/components/leftSide/leftSide.vue'
+  import chatBox from '@/components/chatBox/chatBox.vue'
+  import {useFriendList} from '@/store/useFriendList'
+  const friendStore = useFriendList()
+</script>
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
